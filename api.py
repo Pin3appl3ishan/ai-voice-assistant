@@ -24,3 +24,10 @@ class AssistantFnc(llm.FunctionContext):
             Zone.BATHROOM : 23,
             Zone.OFFICE : 21,
         }
+    
+    # python decorator that specifies func that we're about to write that can be called by our LLM
+    @llm.ai_callable(description="get the temperature in a specific room")
+    def get_temperature(self, zone: Annotated[Zone, llm.TypeInfo(description="The specific zone")]):
+        logger.info("get temp - zone %s", zone)
+        temp = self._temperature[Zone(zone)]
+        return f"The temperature in the {zone} is {temp}C"
