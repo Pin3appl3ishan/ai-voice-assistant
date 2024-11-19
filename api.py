@@ -14,4 +14,13 @@ class Zone(enum.Enum):
     OFFICE = "office"
 
 class AssistantFnc(llm.FunctionContext):
-    
+    def __init__(self) -> None:
+        super().__init__()
+
+        self.temperature = {
+            Zone.LIVING_ROOM : 22,
+            Zone.BEDROOM : 20,
+            Zone.KITCHEN : 24,
+            Zone.BATHROOM : 23,
+            Zone.OFFICE : 21,
+        }
